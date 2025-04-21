@@ -121,15 +121,10 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white font-['Timeless',serif]">
-      {/* Decorative Elements - minimizados en mobile */}
-      <div className="fixed top-0 left-0 w-full h-screen pointer-events-none overflow-hidden opacity-40 md:opacity-100">
-        <div className="absolute top-[20%] left-[10%] w-40 h-40 md:w-64 md:h-64 bg-[#D4AF37]/5 rounded-full blur-[80px] md:blur-[120px]"></div>
-        <div className="absolute bottom-[20%] right-[10%] w-64 h-64 md:w-96 md:h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] md:blur-[150px]"></div>
-      </div>
 
       {/* Hero Section */}
-      <header className="relative min-h-[100svh] bg-[url('/hero-bg-mobile.jpg')] md:bg-[url('/hero-bg.jpg')] bg-cover bg-no-repeat bg-center">
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-[1px]"></div>
+      <header className="relative min-h-[100svh] bg-[url('/hero-mobile.png')] md:bg-[url('/hero-web.jpg')] bg-cover bg-no-repeat bg-center overflow-hidden">
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
         
         {/* Navbar - Mobile First */}
         <nav className="fixed w-full z-50 bg-black/60 backdrop-blur-md border-b border-[#D4AF37]/10">
@@ -187,7 +182,9 @@ function App() {
                 className="mt-8 flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20c25e] text-white px-6 py-3 rounded-md transition-all duration-300"
                 onClick={handleNavLinkClick}
               >
-                <MessageCircle size={20} />
+                <svg viewBox="0 0 32 32" className="w-5 h-5 text-white">
+                  <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
+                </svg>
                 <span>WhatsApp</span>
               </a>
             </div>
@@ -212,6 +209,24 @@ function App() {
             <div className="absolute -bottom-5 -right-5 w-10 h-10 md:w-20 md:h-20 border-r-2 border-b-2 border-[#D4AF37]/30"></div>
           </div>
           
+          {/* Estadísticas destacadas */}
+          <div className="flex flex-row justify-center space-x-8 md:space-x-16 mb-6 md:mb-8">
+            <div className="flex flex-col items-center">
+              <div className="flex items-center space-x-1 mb-1">
+                <Trophy size={16} className="text-[#D4AF37]" />
+                <span className="text-lg md:text-2xl font-bold text-[#D4AF37]">20+</span>
+              </div>
+              <p className="text-xs md:text-sm text-white/70">Años de Experiencia</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <div className="flex items-center space-x-1 mb-1">
+                <Scale size={16} className="text-[#D4AF37]" />
+                <span className="text-lg md:text-2xl font-bold text-[#D4AF37]">2600+</span>
+              </div>
+              <p className="text-xs md:text-sm text-white/70">Casos Exitosos</p>
+            </div>
+          </div>
+          
           <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 text-white/80 font-light">
             Protegemos los derechos de trabajadores de <span className="text-[#D4AF37] font-medium">Buenos Aires</span> con más de 20 años de experiencia y excelencia jurídica
           </p>
@@ -223,7 +238,7 @@ function App() {
                 CONSULTAR GRATIS
                 <ArrowRight className="ml-2 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <span className="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
+              <span className="absolute inset-0 bg-black/90 border border-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
             </button>
             
             <button className="group relative overflow-hidden rounded-md border-2 border-[#D4AF37] px-6 py-3 md:px-8 md:py-4 font-semibold w-full">
@@ -250,14 +265,16 @@ function App() {
               className="flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg shadow-black/30 animate-pulse hover:animate-none"
               aria-label="Contactar por WhatsApp"
             >
-              <MessageCircle size={28} className="text-white" />
+              <svg viewBox="0 0 32 32" className="w-7 h-7 text-white">
+                <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
+              </svg>
             </a>
           </div>
         </div>
       </header>
 
       {/* About Section - Mobile First */}
-      <section id="sobre-nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6">
+      <section id="sobre-nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
@@ -320,8 +337,8 @@ function App() {
       <section id="servicios" className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-zinc-950 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5"></div>
         
-        <div className="absolute top-20 left-10 w-40 h-40 bg-[#D4AF37]/10 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-20 right-10 w-60 h-60 bg-[#D4AF37]/10 rounded-full blur-[100px]"></div>
+        <div className="absolute top-[20%] left-[10%] w-40 h-40 md:w-64 md:h-64 bg-[#D4AF37]/5 rounded-full blur-[80px] md:blur-[120px]"></div>
+        <div className="absolute bottom-[20%] right-[10%] w-64 h-64 md:w-96 md:h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] md:blur-[150px]"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
@@ -445,7 +462,7 @@ function App() {
       </section>
 
       {/* Testimonials Section - Mobile First */}
-      <section id="testimonios" className="py-16 md:py-20 lg:py-32 px-4 md:px-6">
+      <section id="testimonios" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
@@ -509,7 +526,7 @@ function App() {
       </section>
 
       {/* Contact Section - Mobile First */}
-      <section id="contacto" className="relative py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-zinc-950">
+      <section id="contacto" className="relative py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-zinc-950 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
@@ -525,7 +542,7 @@ function App() {
                 <Check size={16} className="text-[#D4AF37]" />
               </div>
               <p className="text-sm md:text-lg">
-                <span className="font-semibold text-[#D4AF37]">Primera consulta totalmente gratuita</span>
+                <span className="font-semibold text-[#D4AF37]">La consulta es totalmente gratuita</span>
               </p>
             </div>
           </div>
@@ -579,7 +596,9 @@ function App() {
                 className="group flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20c25e] text-white p-3 md:p-4 rounded-md transition-all duration-300 transform hover:scale-105 w-full shadow-lg"
               >
                 <div className="relative">
-                  <MessageCircle size={20} className="fill-white text-[#25D366] mr-2" />
+                  <svg viewBox="0 0 32 32" className="w-5 h-5 text-white mr-2">
+                    <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
+                  </svg>
                   <span className="absolute -top-2 -right-2 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
                 </div>
                 <span className="font-medium">Consultar por WhatsApp</span>
@@ -589,14 +608,10 @@ function App() {
               {/* Horario de atención - Mobile First */}
               <div className="mt-6 md:mt-10 pt-6 md:pt-8 border-t border-zinc-800/50">
                 <h4 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-[#D4AF37]">Horario de Atención</h4>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4">
                   <div>
-                    <p className="text-white/50 text-xs md:text-sm">Lunes a Viernes</p>
-                    <p className="text-sm md:text-base text-white/90">9:00 - 18:00</p>
-                  </div>
-                  <div>
-                    <p className="text-white/50 text-xs md:text-sm">Sábados</p>
-                    <p className="text-sm md:text-base text-white/90">10:00 - 13:00</p>
+                    <p className="text-white/50 text-xs md:text-sm">Lunes, Miércoles y Jueves</p>
+                    <p className="text-sm md:text-base text-white/90">16:00 - 19:00</p>
                   </div>
                 </div>
               </div>
@@ -706,7 +721,7 @@ function ServicesMobileCarousel({ services, activeSlide, setActiveSlide, sliderR
         
         <div 
           ref={sliderRef}
-          className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide"
+          className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide w-full"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {services.map((service, index) => (
@@ -769,7 +784,7 @@ function TestimonialsMobileCarousel({ testimonials, activeTestimonial, setActive
         
         <div 
           ref={testimonialSliderRef}
-          className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide"
+          className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide w-full"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {testimonials.map((testimonial, index) => (
@@ -852,7 +867,7 @@ const aboutCards = [
 
 const stats = [
   { icon: <Trophy className="text-[#D4AF37] mx-auto" size={24} />, value: "20+", label: "Años de Experiencia" },
-  { icon: <Scale className="text-[#D4AF37] mx-auto" size={24} />, value: "1700+", label: "Casos Exitosos" }
+  { icon: <Scale className="text-[#D4AF37] mx-auto" size={24} />, value: "2600+", label: "Casos Exitosos" }
 ]
 
 const testimonials = [
