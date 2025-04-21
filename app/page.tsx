@@ -41,7 +41,7 @@ const otherServices = [
 
 function App() {
   // Datos de contacto como variables
-  const contactPhone = "+54 (11) 3002-3117";
+  const contactPhone = "+54 11 3002-3117";
   const contactPhoneNumeric = "5491130023117";
   const contactEmail = "aielloargenio@gmail.com";
   const contactAddress = "Av. Lope de Vega 1133 6to Piso Dto B, Villa Luro, CABA";
@@ -53,6 +53,9 @@ function App() {
   const [activeSlide, setActiveSlide] = useState(0);
   const totalSlides = otherServices.length;
   
+  // Estados para el formulario de contacto
+  const [formExpanded, setFormExpanded] = useState(false);
+
   // Estado adicional para el carrusel de testimonios
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const totalTestimonials = testimonials.length;
@@ -123,22 +126,22 @@ function App() {
     <div className="min-h-screen bg-black text-white font-['Timeless',serif]">
 
       {/* Hero Section */}
-      <header className="relative min-h-[100svh] bg-[url('/hero-mobile.png')] md:bg-[url('/hero-web.jpg')] bg-cover bg-no-repeat bg-center overflow-hidden">
+      <header id='inicio' className="relative min-h-[100svh] bg-[url('/hero-mobile.png')] md:bg-[url('/hero-web.jpg')] bg-cover bg-no-repeat bg-center overflow-hidden">
         <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
         
         {/* Navbar - Mobile First */}
         <nav className="fixed w-full z-50 bg-black/60 backdrop-blur-md border-b border-[#D4AF37]/10">
           <div className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-5 flex justify-between items-center">
             <div className="relative">
-              <div className="text-xl md:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
-                AIELLO, ARGENIO & ASOC.
+              <div className="text-xl md:text-lg lg:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+                <span className=''>AIELLO, ARGENIO & ASOC</span>
               </div>
               <div className="absolute -bottom-1 left-0 w-1/2 h-[1px] bg-gradient-to-r from-[#D4AF37] to-transparent"></div>
             </div>
             
             {/* Menú Desktop */}
             <div className="hidden md:flex space-x-8 lg:space-x-10">
-              {['Inicio', 'Sobre Nosotros', 'Servicios', 'Testimonios', 'Contacto'].map((item, index) => (
+              {['Inicio', 'Nosotros', 'Servicios', 'Testimonios', 'Contacto'].map((item, index) => (
                 <a 
                   key={index}
                   href={`#${item.toLowerCase().replace(' ', '-')}`}
@@ -182,8 +185,11 @@ function App() {
                 className="mt-8 flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20c25e] text-white px-6 py-3 rounded-md transition-all duration-300"
                 onClick={handleNavLinkClick}
               >
-                <svg viewBox="0 0 32 32" className="w-5 h-5 text-white">
-                  <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
+                <svg viewBox="0 0 24 24" className="w-5 h-5 text-white mr-2">
+                  <path 
+                    fill="currentColor" 
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
                 </svg>
                 <span>WhatsApp</span>
               </a>
@@ -265,8 +271,11 @@ function App() {
               className="flex items-center justify-center w-14 h-14 bg-[#25D366] rounded-full shadow-lg shadow-black/30 animate-pulse hover:animate-none"
               aria-label="Contactar por WhatsApp"
             >
-              <svg viewBox="0 0 32 32" className="w-7 h-7 text-white">
-                <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
+              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white mr-2">
+                <path 
+                  fill="currentColor" 
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                />
               </svg>
             </a>
           </div>
@@ -274,7 +283,7 @@ function App() {
       </header>
 
       {/* About Section - Mobile First */}
-      <section id="sobre-nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
+      <section id="nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
@@ -525,7 +534,7 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section - Mobile First */}
+      {/* Contact Section - Mobile First - Rediseñado */}
       <section id="contacto" className="relative py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-zinc-950 overflow-hidden">
         <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
@@ -547,131 +556,188 @@ function App() {
             </div>
           </div>
           
-          {/* Información de contacto y formulario - Apilados en móvil, en fila en desktop */}
-          <div className="grid md:grid-cols-2 gap-10 md:gap-8 lg:gap-16">
-            {/* Información de contacto - Mobile First */}
-            <div className="space-y-6 md:space-y-8 order-2 md:order-1">
-              <div className="relative">
-                <div className="absolute -left-4 top-1/2 transform -translate-y-1/2 w-8 h-0.5 bg-gradient-to-r from-[#D4AF37] to-transparent"></div>
-                <h3 className="text-xl md:text-2xl font-light mb-6 md:mb-8 pl-6 border-l border-[#D4AF37]/40">Información de Contacto</h3>
-              </div>
-              
-              <div className="space-y-4 md:space-y-6">
-                <div className="group flex items-start space-x-4 p-3 md:p-4 rounded-md hover:bg-zinc-900/50 transition-colors duration-300">
-                  <div className="p-2 md:p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                    <Phone size={18} className="text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <p className="text-xs md:text-sm text-white/50 mb-1">Teléfono</p>
-                    <a href={`tel:${contactPhoneNumeric}`} className="text-sm md:text-base text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactPhone}</a>
-                  </div>
+          {/* Opciones de contacto - Rediseñado */}
+          <div className="max-w-3xl mx-auto">
+            <div className="grid gap-8">
+              {/* WhatsApp - Opción recomendada */}
+              <div className="relative bg-black/30 backdrop-blur-sm rounded-md border border-zinc-800/50 p-6 md:p-8 overflow-hidden">
+                <div className="absolute -top-5 -right-5 w-40 h-40 bg-[#25D366]/10 rounded-full blur-3xl"></div>
+                
+                {/* Etiqueta de recomendado */}
+                <div className="absolute -right-10 top-8 bg-[#D4AF37] text-black px-12 py-1 transform rotate-45 text-xs font-bold">
+                  RECOMENDADO
                 </div>
                 
-                <div className="group flex items-start space-x-4 p-3 md:p-4 rounded-md hover:bg-zinc-900/50 transition-colors duration-300">
-                  <div className="p-2 md:p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                    <Mail size={18} className="text-[#D4AF37]" />
+                <div className="relative z-10">
+                  <div className="flex items-center mb-4 md:mb-6">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#25D366]/20 flex items-center justify-center mr-4">
+                      <svg viewBox="0 0 24 24" className="w-6 h-6 text-[#25D366]">
+                        <path 
+                          fill="currentColor" 
+                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                        />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-semibold text-white">Contactar por WhatsApp</h3>
+                      <p className="text-white/60 text-sm md:text-base">Respuesta inmediata, los 7 días de la semana</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs md:text-sm text-white/50 mb-1">Email</p>
-                    <a href={`mailto:${contactEmail}`} className="text-sm md:text-base text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactEmail}</a>
-                  </div>
-                </div>
-                
-                <div className="group flex items-start space-x-4 p-3 md:p-4 rounded-md hover:bg-zinc-900/50 transition-colors duration-300">
-                  <div className="p-2 md:p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                    <MapPin size={18} className="text-[#D4AF37]" />
-                  </div>
-                  <div>
-                    <p className="text-xs md:text-sm text-white/50 mb-1">Dirección</p>
-                    <p className="text-sm md:text-base text-white/90">{contactAddress}</p>
-                  </div>
+                  
+                  <p className="text-white/70 mb-6 text-sm md:text-base">
+                    Envíanos un mensaje por WhatsApp y recibirás atención personalizada de nuestros abogados especialistas. Es la forma más rápida de recibir asesoramiento.
+                  </p>
+                  
+                  <a 
+                    href={`https://wa.me/${contactPhoneNumeric}?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20consulta%20gratuita%20sobre%20mi%20caso%20laboral.`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group relative overflow-hidden rounded-md w-full inline-flex items-center justify-center"
+                  >
+                    <div className="relative bg-[#25D366] text-white p-4 md:p-5 font-semibold z-10 w-full flex items-center justify-center">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-3 text-white">
+                        <path 
+                          fill="currentColor" 
+                          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                        />
+                      </svg>
+                      <span className="text-base md:text-lg tracking-wider">CONSULTAR POR WHATSAPP</span>
+                      <ArrowRight className="ml-3 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                    <div className="absolute inset-0 bg-[#1ea952] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                  </a>
+                  
+                  <p className="text-center text-white/50 text-xs mt-3">¿NO TE FUNCIONÓ EL BOTÓN? Copiá nuestro numero y mandanos un mensaje {contactPhone}</p>
                 </div>
               </div>
               
-              {/* Botón WhatsApp - Mobile First */}
-              <a 
-                href={`https://wa.me/${contactPhoneNumeric}?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20consulta%20gratuita%20sobre%20mi%20caso%20laboral.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20c25e] text-white p-3 md:p-4 rounded-md transition-all duration-300 transform hover:scale-105 w-full shadow-lg"
-              >
-                <div className="relative">
-                  <svg viewBox="0 0 32 32" className="w-5 h-5 text-white mr-2">
-                    <path fill="currentColor" d="M16.004 0h-.008C7.174 0 0 7.176 0 16c0 3.5 1.128 6.744 3.046 9.378l-1.994 5.944 6.146-1.964C9.732 31.032 12.75 32 16.004 32 24.826 32 32 24.822 32 16S24.826 0 16.004 0zm-5.236 22.77c-.66-.33-3.87-1.91-4.47-2.13-.6-.22-1.037-.33-1.474.33-.437.66-1.69 2.13-2.072 2.57-.383.44-.765.495-1.425.165-.66-.33-2.788-1.03-5.312-3.28-1.964-1.75-3.29-3.91-3.673-4.57-.383-.66-.04-.94.29-1.28.36-.3.767-.72.985-1.01.218-.29.29-.5.436-.83.146-.33.073-.62-.037-.87-.11-.25-.985-2.37-1.35-3.24-.354-.85-.717-.735-.985-.75-.254-.015-.546-.015-.84-.015-.291 0-.766.11-1.165.55-.4.44-1.527 1.5-1.527 3.65s1.564 4.23 1.782 4.56c.218.33 3.054 4.77 7.557 6.48 4.502 1.71 4.502 1.14 5.312.89.81-.25 2.625-1.07 2.997-2.1.372-1.033.372-1.92.262-2.103-.11-.182-.4-.291-.837-.478z"/>
-                  </svg>
-                  <span className="absolute -top-2 -right-2 w-3 h-3 bg-red-500 rounded-full animate-ping"></span>
-                </div>
-                <span className="font-medium">Consultar por WhatsApp</span>
-              </a>
-              <p className="text-white/70 text-center text-xs md:text-sm">Consultas gratuitas para residentes de Buenos Aires</p>
-              
-              {/* Horario de atención - Mobile First */}
-              <div className="mt-6 md:mt-10 pt-6 md:pt-8 border-t border-zinc-800/50">
-                <h4 className="text-base md:text-lg font-semibold mb-3 md:mb-4 text-[#D4AF37]">Horario de Atención</h4>
-                <div className="grid grid-cols-1 gap-4">
-                  <div>
-                    <p className="text-white/50 text-xs md:text-sm">Lunes, Miércoles y Jueves</p>
-                    <p className="text-sm md:text-base text-white/90">16:00 - 19:00</p>
+              {/* Formulario desplegable */}
+              <div className="bg-black/30 backdrop-blur-sm rounded-md border border-zinc-800/50 overflow-hidden">
+                {/* Trigger para expandir/colapsar */}
+                <div 
+                  className="p-6 flex items-center justify-between cursor-pointer"
+                  onClick={() => setFormExpanded(!formExpanded)}
+                >
+                  <div className="flex items-center">
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-900 flex items-center justify-center mr-4">
+                      <Mail size={20} className="text-[#D4AF37]" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-semibold text-white">O completa el formulario</h3>
+                      <p className="text-white/60 text-sm md:text-base">Te contactaremos en horario de atención</p>
+                    </div>
                   </div>
+                  
+                  <ChevronDown 
+                    size={24} 
+                    className={`text-[#D4AF37] transition-transform duration-300 ${formExpanded ? 'rotate-180' : ''}`}
+                  />
+                </div>
+                
+                {/* Formulario desplegable */}
+                {formExpanded && (
+                  <div className="p-6 pt-0 border-t border-zinc-800/50">
+                    <div className="space-y-4 md:space-y-6">
+                      <div>
+                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Nombre completo</label>
+                        <input
+                          type="text"
+                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
+                          placeholder="Su nombre"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Correo electrónico</label>
+                        <input
+                          type="email"
+                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
+                          placeholder={contactEmail}
+                        />
+                      </div>
+                      <div>
+                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Teléfono</label>
+                        <input
+                          type="tel"
+                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
+                          placeholder={contactPhone}
+                        />
+                      </div>
+                      <div>
+                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Asunto</label>
+                        <select className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base">
+                          <option>Consulta General</option>
+                          <option>Despido Laboral</option>
+                          <option>Accidente de Trabajo</option>
+                          <option>Conflicto Sindical</option>
+                          <option>Otro</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Mensaje</label>
+                        <textarea
+                          rows={3}
+                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors resize-none text-sm md:text-base"
+                          placeholder="Describa brevemente su caso"
+                        ></textarea>
+                      </div>
+                      <button className="group relative overflow-hidden w-full rounded-md">
+                        <div className="relative bg-[#D4AF37] text-black p-3 md:p-4 font-semibold z-10 group-hover:text-white transition-colors duration-300 flex items-center justify-center">
+                          <span className="tracking-wider text-sm md:text-base">ENVIAR CONSULTA</span>
+                          <ArrowRight className="ml-2 w-0 group-hover:w-5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                        </div>
+                        <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            
+            {/* Información de contacto adicional */}
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
+                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
+                  <Phone size={18} className="text-[#D4AF37]" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/50 mb-1">Teléfono</p>
+                  <a href={`tel:${contactPhoneNumeric}`} className="text-sm text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactPhone}</a>
+                </div>
+              </div>
+              
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
+                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
+                  <Mail size={18} className="text-[#D4AF37]" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/50 mb-1">Email</p>
+                  <a href={`mailto:${contactEmail}`} className="text-sm text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactEmail}</a>
+                </div>
+              </div>
+              
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
+                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
+                  <MapPin size={18} className="text-[#D4AF37]" />
+                </div>
+                <div>
+                  <p className="text-xs text-white/50 mb-1">Horario</p>
+                  <p className="text-sm text-white/90">Lunes, Miércoles y Jueves de 16:00 a 19:00</p>
                 </div>
               </div>
             </div>
             
-            {/* Formulario de contacto - Mobile First */}
-            <form className="relative p-6 md:p-8 bg-black/30 backdrop-blur-sm rounded-md border border-zinc-800/50 order-1 md:order-2">
-              <div className="absolute -top-5 -right-5 w-40 h-40 bg-[#D4AF37]/5 rounded-full blur-3xl"></div>
-              <div className="space-y-4 md:space-y-6 relative z-10">
-                <div>
-                  <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Nombre completo</label>
-                  <input
-                    type="text"
-                    className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                    placeholder="Su nombre"
-                  />
+            {/* Dirección */}
+            <div className="mt-8 p-4 rounded-md bg-zinc-900/20 border border-zinc-800/50">
+              <div className="flex items-start space-x-4">
+                <div className="p-3 bg-black rounded-md border border-zinc-800">
+                  <MapPin size={18} className="text-[#D4AF37]" />
                 </div>
                 <div>
-                  <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Correo electrónico</label>
-                  <input
-                    type="email"
-                    className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                    placeholder={contactEmail}
-                  />
+                  <p className="text-xs text-white/50 mb-1">Dirección</p>
+                  <p className="text-sm text-white/90">{contactAddress}</p>
                 </div>
-                <div>
-                  <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Teléfono</label>
-                  <input
-                    type="tel"
-                    className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                    placeholder={contactPhone}
-                  />
-                </div>
-                <div>
-                  <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Asunto</label>
-                  <select className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base">
-                    <option>Consulta General</option>
-                    <option>Despido Laboral</option>
-                    <option>Accidente de Trabajo</option>
-                    <option>Conflicto Sindical</option>
-                    <option>Otro</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Mensaje</label>
-                  <textarea
-                    rows={3}
-                    className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors resize-none text-sm md:text-base"
-                    placeholder="Describa brevemente su caso"
-                  ></textarea>
-                </div>
-                <button className="group relative overflow-hidden w-full rounded-md">
-                  <div className="relative bg-[#D4AF37] text-black p-3 md:p-4 font-semibold z-10 group-hover:text-white transition-colors duration-300 flex items-center justify-center">
-                    <span className="tracking-wider text-sm md:text-base">ENVIAR CONSULTA</span>
-                    <ArrowRight className="ml-2 w-0 group-hover:w-5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                  </div>
-                  <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </section>
@@ -750,7 +816,7 @@ function ServicesMobileCarousel({
                 <h4 className="text-lg font-semibold mb-2 text-[#D4AF37]">{service.title}</h4>
                 <p className="text-white/70 text-sm leading-relaxed mb-4">{service.description}</p>
                 <a href="#contacto" className="text-[#D4AF37] text-sm mt-auto self-end flex items-center">
-                  Consultar <ArrowRight size={12} className="ml-1" />
+                  Consultar <ArrowRight size={12} />
                 </a>
               </div>
             </div>
