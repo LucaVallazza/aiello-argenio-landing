@@ -43,7 +43,7 @@ function App() {
   // Datos de contacto como variables
   const contactPhone = "+54 (11) 3002-3117";
   const contactPhoneNumeric = "5491130023117";
-  const contactEmail = "aieloargenio@gmail.com";
+  const contactEmail = "aielloargenio@gmail.com";
   const contactAddress = "Av. Lope de Vega 1133 6to Piso Dto B, Villa Luro, CABA";
   
   // Estado para menú móvil
@@ -58,8 +58,8 @@ function App() {
   const totalTestimonials = testimonials.length;
   
   // Referencias para los contenedores de carrusel
-  const sliderRef = useRef(null);
-  const testimonialSliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
+  const testimonialSliderRef = useRef<HTMLDivElement>(null) as React.RefObject<HTMLDivElement>;
   
   // Manejar navegación del carrusel de servicios
   const nextSlide = () => {
@@ -102,7 +102,7 @@ function App() {
   }, [activeTestimonial]);
   
   // Cerrar menú móvil al hacer clic en un enlace
-  const handleNavLinkClick = (e) => {
+  const handleNavLinkClick = (e : any) => {
     setMobileMenuOpen(false);
   };
   
@@ -697,8 +697,8 @@ function App() {
           
           {/* Copyright - Mobile First */}
           <div className="border-t border-zinc-900 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <div className="text-white/40 text-xs md:text-sm mb-3 md:mb-0">&copy; 2025 Aiello, Argenio & Asociados. Todos los derechos reservados.</div>
-            <div className="text-white/40 text-xs md:text-sm">Desarrollado por un experto en UI/UX</div>
+            <div className="text-white/40 text-xs md:text-sm mb-3 md:mb-0">&copy; 2025 Lu&Co Soft. Sitio desarrollado para Aiello, Argenio & Asociados. </div>
+
           </div>
         </div>
       </footer>
@@ -707,7 +707,21 @@ function App() {
 }
 
 // Componente de carrusel de servicios para móvil
-function ServicesMobileCarousel({ services, activeSlide, setActiveSlide, sliderRef, prevSlide, nextSlide }) {
+function ServicesMobileCarousel({ 
+  services, 
+  activeSlide, 
+  setActiveSlide, 
+  sliderRef, 
+  prevSlide, 
+  nextSlide 
+}: {
+  services: Array<{icon: React.ReactNode, title: string, description: string}>;
+  activeSlide: number;
+  setActiveSlide: React.Dispatch<React.SetStateAction<number>>;
+  sliderRef: React.RefObject<HTMLDivElement>;
+  prevSlide: () => void;
+  nextSlide: () => void;
+}) {
   return (
     <div className="md:hidden">
       <div className="relative">
@@ -769,11 +783,24 @@ function ServicesMobileCarousel({ services, activeSlide, setActiveSlide, sliderR
 }
 
 // Componente de carrusel de testimonios para móvil
-function TestimonialsMobileCarousel({ testimonials, activeTestimonial, setActiveTestimonial, testimonialSliderRef, prevTestimonial, nextTestimonial }) {
+function TestimonialsMobileCarousel({ 
+  testimonials, 
+  activeTestimonial, 
+  setActiveTestimonial, 
+  testimonialSliderRef, 
+  prevTestimonial, 
+  nextTestimonial 
+}: {
+  testimonials: Array<{text: string, name: string, type: string}>;
+  activeTestimonial: number;
+  setActiveTestimonial: React.Dispatch<React.SetStateAction<number>>;
+  testimonialSliderRef: React.RefObject<HTMLDivElement>;
+  prevTestimonial: () => void;
+  nextTestimonial: () => void;
+}) {
   return (
-    <div className="lg:hidden relative">
+    <div className="lg:hidden mb-8">
       <div className="relative">
-        {/* Navegación del carrusel */}
         <button 
           onClick={prevTestimonial}
           className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
@@ -792,21 +819,20 @@ function TestimonialsMobileCarousel({ testimonials, activeTestimonial, setActive
               key={index} 
               className="min-w-full snap-center px-4"
             >
-              <div className="group relative bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 p-6 rounded-lg h-full flex flex-col transition-all duration-300">
-                <div className="absolute -top-3 left-6 text-[#D4AF37] text-5xl md:text-7xl opacity-20 font-serif">"</div>
-                <div className="flex mb-4 md:mb-6 space-x-1">
+              <div className="bg-zinc-900/50 backdrop-blur-sm p-6 rounded-lg h-full flex flex-col border border-zinc-800">
+                <div className="flex mb-4 space-x-1">
                   {[1, 2, 3, 4, 5].map(n => (
-                    <Star key={n} size={14} className="fill-[#D4AF37] text-[#D4AF37]" />
+                    <Star key={n} size={16} className="fill-[#D4AF37] text-[#D4AF37]" />
                   ))}
                 </div>
-                <p className="mb-5 text-sm text-white/80 italic leading-relaxed relative z-10">"{testimonial.text}"</p>
+                <p className="mb-5 text-white/80 italic leading-relaxed relative z-10">"{testimonial.text}"</p>
                 <div className="mt-auto">
                   <div className="flex items-center space-x-3 pt-4 border-t border-zinc-800/30">
-                    <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#9F7C27] flex items-center justify-center uppercase text-black font-bold text-sm">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#9F7C27] flex items-center justify-center uppercase text-black font-bold">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
-                      <h4 className="text-[#D4AF37] font-bold text-sm">{testimonial.name}</h4>
+                      <h4 className="text-[#D4AF37] font-bold">{testimonial.name}</h4>
                       <p className="text-white/50 text-xs">{testimonial.type}</p>
                     </div>
                   </div>
@@ -825,7 +851,6 @@ function TestimonialsMobileCarousel({ testimonials, activeTestimonial, setActive
         </button>
       </div>
       
-      {/* Indicadores de diapositivas */}
       <div className="flex justify-center mt-6 space-x-2">
         {testimonials.map((_, index) => (
           <button
