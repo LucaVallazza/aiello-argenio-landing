@@ -123,20 +123,31 @@ function App() {
   }, [mobileMenuOpen]);
 
   return (
-    <div className="min-h-screen bg-black text-white font-['Timeless',serif]">
+    <div className="min-h-screen bg-white text-gray-500 font-['Timeless',serif]">
 
-      {/* Hero Section */}
-      <header id='inicio' className="relative min-h-[100svh] bg-[url('/hero-mobile.png')] md:bg-[url('/hero-web.jpg')] bg-cover bg-no-repeat bg-center overflow-hidden">
-        <div className="absolute inset-0 bg-black/60 backdrop-blur-[1px]"></div>
+      {/* Hero Section - Rediseñado */}
+      <header id='inicio' className="relative min-h-[100svh] overflow-hidden">
+        {/* Imagen de fondo */}
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/bg-hero-light.png" 
+            alt="Fondo" 
+            className="object-cover w-full h-full opacity-95"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-100/60 via-primary-100/70 to-primary-100/100"></div>
+        </div>
         
-        {/* Navbar - Mobile First */}
-        <nav className="fixed w-full z-50 bg-black/60 backdrop-blur-md border-b border-[#D4AF37]/10">
+        {/* Patrón decorativo superpuesto */}
+        {/* <div className="absolute inset-0 bg-[url('/hero-pattern-light.svg')] opacity-10 bg-repeat"></div> */}
+        
+        {/* Navbar - Rediseñado */}
+        <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-primary-100/30 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-5 flex justify-between items-center">
             <div className="relative">
-              <div className="text-xl md:text-lg lg:text-2xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+              <div className="text-xl md:text-lg lg:text-2xl font-bold tracking-wider text-primary-800">
                 <span className=''>AIELLO, ARGENIO & ASOC</span>
               </div>
-              <div className="absolute -bottom-1 left-0 w-1/2 h-[1px] bg-gradient-to-r from-[#D4AF37] to-transparent"></div>
+              <div className="absolute -bottom-1 left-0 w-1/2 h-[2px] bg-gradient-to-r from-primary-400 to-transparent"></div>
             </div>
             
             {/* Menú Desktop */}
@@ -145,17 +156,17 @@ function App() {
                 <a 
                   key={index}
                   href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="relative group font-light tracking-wide"
+                  className="relative group font-medium tracking-wide"
                 >
-                  <span className="text-white/80 group-hover:text-white transition-colors duration-300">{item}</span>
-                  <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
+                  <span className="text-primary-700 group-hover:text-primary-900 transition-colors duration-300">{item}</span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary-400 transition-all duration-300 group-hover:w-full"></span>
                 </a>
               ))}
             </div>
             
             {/* Botón de menú móvil */}
             <button 
-              className="md:hidden flex items-center justify-center w-10 h-10 text-[#D4AF37]"
+              className="md:hidden flex items-center justify-center w-10 h-10 text-primary-600"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label={mobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
             >
@@ -164,102 +175,60 @@ function App() {
           </div>
         </nav>
         
-        {/* Menú móvil */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col justify-center md:hidden">
-            <div className="flex flex-col items-center space-y-8 px-6">
-              {['Inicio', 'Sobre Nosotros', 'Servicios', 'Testimonios', 'Contacto'].map((item, index) => (
-                <a 
-                  key={index}
-                  href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="text-2xl text-white/90 hover:text-[#D4AF37] transition-colors duration-300"
-                  onClick={handleNavLinkClick}
-                >
-                  {item}
-                </a>
-              ))}
-              <a 
-                href={`https://wa.me/${contactPhoneNumeric}?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20consulta%20gratuita%20sobre%20mi%20caso%20laboral.`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 flex items-center justify-center space-x-3 bg-[#25D366] hover:bg-[#20c25e] text-white px-6 py-3 rounded-md transition-all duration-300"
-                onClick={handleNavLinkClick}
-              >
-                <svg viewBox="0 0 24 24" className="w-5 h-5 text-white mr-2">
-                  <path 
-                    fill="currentColor" 
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-                  />
-                </svg>
-                <span>WhatsApp</span>
-              </a>
-            </div>
-            <button 
-              className="absolute top-5 right-5 text-[#D4AF37]"
-              onClick={() => setMobileMenuOpen(false)}
-              aria-label="Cerrar menú"
-            >
-              <X size={24} />
-            </button>
-          </div>
-        )}
-        
-        {/* Hero Content - Mobile First */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 md:px-6">
+        {/* Hero Content - Rediseñado con posicionamiento mejorado */}
+        <div className="relative z-10 min-h-[100svh] flex flex-col justify-center items-center text-center px-4 md:px-6">
           <div className="relative max-w-4xl">
             {/* Bordes decorativos, reducidos en móvil */}
-            <div className="absolute -top-5 -left-5 w-10 h-10 md:w-20 md:h-20 border-l-2 border-t-2 border-[#D4AF37]/30"></div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B] leading-tight">
+            <div className="absolute -top-5 -left-5 w-10 h-10 md:w-20 md:h-20 border-l-2 border-t-2 border-primary-300"></div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-6 text-primary-900 leading-tight">
               EXPERTOS EN<br/>DERECHO LABORAL
             </h1>
-            <div className="absolute -bottom-5 -right-5 w-10 h-10 md:w-20 md:h-20 border-r-2 border-b-2 border-[#D4AF37]/30"></div>
+            <div className="absolute -bottom-5 -right-5 w-10 h-10 md:w-20 md:h-20 border-r-2 border-b-2 border-primary-300"></div>
           </div>
           
           {/* Estadísticas destacadas */}
           <div className="flex flex-row justify-center space-x-8 md:space-x-16 mb-6 md:mb-8">
             <div className="flex flex-col items-center">
               <div className="flex items-center space-x-1 mb-1">
-                <Trophy size={16} className="text-[#D4AF37]" />
-                <span className="text-lg md:text-2xl font-bold text-[#D4AF37]">20+</span>
+                <Trophy size={16} className="text-primary-600" />
+                <span className="text-lg md:text-2xl font-bold text-primary-800">20+</span>
               </div>
-              <p className="text-xs md:text-sm text-white/70">Años de Experiencia</p>
+              <p className="text-xs md:text-sm text-primary-700">Años de Experiencia</p>
             </div>
             <div className="flex flex-col items-center">
               <div className="flex items-center space-x-1 mb-1">
-                <Scale size={16} className="text-[#D4AF37]" />
-                <span className="text-lg md:text-2xl font-bold text-[#D4AF37]">2600+</span>
+                <Scale size={16} className="text-primary-600" />
+                <span className="text-lg md:text-2xl font-bold text-primary-800">2600+</span>
               </div>
-              <p className="text-xs md:text-sm text-white/70">Casos Exitosos</p>
+              <p className="text-xs md:text-sm text-primary-700">Casos Exitosos</p>
             </div>
           </div>
           
-          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 text-white/80 font-light">
-            Protegemos los derechos de trabajadores de <span className="text-[#D4AF37] font-medium">Buenos Aires</span> con más de 20 años de experiencia y excelencia jurídica
+          <p className="text-lg md:text-xl max-w-2xl mx-auto mb-8 md:mb-10 text-primary-800 font-medium">
+            Protegemos los derechos de trabajadores de <span className="text-primary-600 font-bold">Buenos Aires</span> con más de 20 años de experiencia y excelencia jurídica
           </p>
           
-          {/* Botones CTA - Mobile First */}
+          {/* Botones CTA - Rediseñados */}
           <div className="flex flex-col w-full max-w-xs sm:max-w-md sm:flex-row gap-4 sm:gap-6">
-            <button className="group relative overflow-hidden rounded-md bg-[#D4AF37] text-black px-6 py-3 md:px-8 md:py-4 font-semibold shadow-lg shadow-[#D4AF37]/20 w-full">
-              <a href="#contacto" className="relative z-10 flex items-center justify-center group-hover:text-white transition-colors duration-300">
+            <button className="group relative overflow-hidden rounded-md bg-primary-500 text-white px-6 py-3 md:px-8 md:py-4 font-semibold shadow-lg shadow-primary-300/20 w-full hover:bg-primary-600 transition-colors duration-300">
+              <a href="#contacto" className="relative z-10 flex items-center justify-center">
                 CONSULTAR GRATIS
                 <ArrowRight className="ml-2 w-5 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <span className="absolute inset-0 bg-black/90 border border-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
             </button>
             
-            <button className="group relative overflow-hidden rounded-md border-2 border-[#D4AF37] px-6 py-3 md:px-8 md:py-4 font-semibold w-full">
-              <a href="#servicios" className="relative z-10 flex items-center justify-center text-[#D4AF37] group-hover:text-black transition-colors duration-300">
+            <button className="group relative overflow-hidden rounded-md border-2 border-primary-400 text-primary-700 hover:text-white hover:bg-primary-400 px-6 py-3 md:px-8 md:py-4 font-semibold w-full transition-all duration-300">
+              <a href="#servicios" className="relative z-10 flex items-center justify-center">
                 NUESTROS SERVICIOS
                 <ArrowRight className="ml-2 w-0 group-hover:w-5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
               </a>
-              <span className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-300"></span>
             </button>
           </div>
           
           {/* Indicador de scroll - Solo visible en pantallas más grandes */}
           <div className="absolute bottom-10 hidden md:flex flex-col items-center">
-            <p className="text-white/60 text-sm mb-3 tracking-widest">CONOZCA MÁS</p>
-            <ChevronDown className="text-[#D4AF37] animate-bounce" size={24} />
+            <p className="text-primary-600 text-sm mb-3 tracking-widest">CONOZCA MÁS</p>
+            <ChevronDown className="text-primary-500 animate-bounce" size={24} />
           </div>
           
           {/* Botón flotante de WhatsApp - Solo mobile */}
@@ -282,134 +251,99 @@ function App() {
         </div>
       </header>
 
-      {/* About Section - Mobile First */}
-      <section id="nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
+      {/* About Section - Rediseñada */}
+      <section id="nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-gradient-to-b from-primary-50/30  to-primary-50/30 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-12 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
                 SOBRE NOSOTROS
               </span>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"></div>
             </h2>
             
-            <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto mt-8 md:mt-12 text-white/80 leading-relaxed">
+            <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto mt-8 md:mt-12 text-primary-800 leading-relaxed">
               Somos un estudio jurídico especializado en derecho laboral con más de 20 años de trayectoria, brindando asesoramiento legal de excelencia tanto a empresas como a trabajadores. Nuestro compromiso es ofrecer soluciones eficientes y personalizadas para cada caso.
             </p>
           </div>
           
-          {/* Tarjetas - Mobile First (2 columnas en móvil, 4 en desktop) */}
+          {/* Tarjetas - Rediseñadas */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
             {aboutCards.map((card, index) => (
               <div key={index} 
-                className="group bg-zinc-900/50 backdrop-blur-sm border border-zinc-800 hover:border-[#D4AF37]/30 p-6 md:p-8 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#D4AF37]/5"
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg border border-primary-100 hover:border-primary-300 p-6 md:p-8 transition-all duration-300 hover:translate-y-[-4px]"
               >
-                <div className="p-3 mb-4 md:mb-5 inline-flex rounded-full bg-black/50 text-[#D4AF37]">
+                <div className="p-3 mb-4 md:mb-5 inline-flex rounded-full bg-primary-100/50 text-primary-600">
                   {card.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-2 md:mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">{card.title}</h3>
-                <p className="text-sm md:text-base text-white/70 font-light">{card.description}</p>
+                <h3 className="text-xl font-semibold mb-2 md:mb-3 text-primary-800 group-hover:text-primary-600 transition-colors duration-300">{card.title}</h3>
+                <p className="text-sm md:text-base text-primary-700">{card.description}</p>
               </div>
             ))}
-          </div>
-          
-          {/* Estadísticas - Apiladas en móvil, en fila en desktop */}
-          <div className="mt-12 md:mt-16 lg:mt-24 grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8 justify-center max-w-3xl mx-auto">
-            {stats.map((stat, index) => (
-              <div key={index} 
-                className="group relative overflow-hidden rounded-md bg-gradient-to-br from-zinc-900/80 to-black p-6 md:p-8 text-center border border-zinc-800 hover:border-[#D4AF37]/20 transition-all duration-300"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-3xl group-hover:w-full group-hover:h-full transition-all duration-700"></div>
-                <div className="relative z-10">
-                  {stat.icon}
-                  <h3 className="text-3xl md:text-4xl font-bold my-2 md:my-3 group-hover:text-[#D4AF37] transition-colors duration-300">{stat.value}</h3>
-                  <p className="text-white/70 font-light">{stat.label}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          {/* CTA - Mobile First */}
-          <div className="mt-12 text-center">
-            <a 
-              href="#contacto" 
-              className="inline-flex items-center justify-center bg-[#D4AF37] hover:bg-[#E5C76B] text-black px-6 py-3 md:px-8 md:py-3 rounded-md font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D4AF37]/20 group w-full sm:w-auto"
-            >
-              Consulta ahora
-              <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
           </div>
         </div>
       </section>
 
-      {/* Services Section - Mobile First */}
-      <section id="servicios" className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-zinc-950 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5"></div>
-        
-        <div className="absolute top-[20%] left-[10%] w-40 h-40 md:w-64 md:h-64 bg-[#D4AF37]/5 rounded-full blur-[80px] md:blur-[120px]"></div>
-        <div className="absolute bottom-[20%] right-[10%] w-64 h-64 md:w-96 md:h-96 bg-[#D4AF37]/5 rounded-full blur-[100px] md:blur-[150px]"></div>
+      {/* Services Section - Rediseñada con aspecto más serio y profesional */}
+      <section id="servicios" className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/wave-pattern.svg')] bg-repeat opacity-3"></div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
             <div className="inline-block relative mb-4">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
                 NUESTROS SERVICIOS
               </span>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-600 to-transparent"></div>
             </div>
             
-            {/* Banner consultas gratuitas - Mobile First */}
-            <div className="max-w-3xl mx-auto mt-8 md:mt-10 mb-6 md:mb-8 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-lg p-3 md:p-4 flex flex-col sm:flex-row items-center justify-center">
-              <div className="w-10 h-10 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mb-2 sm:mb-0 sm:mr-3">
-                <Check size={20} className="text-[#D4AF37]" />
+            {/* Banner consultas gratuitas - Rediseñado más sobrio */}
+            <div className="max-w-3xl mx-auto mt-8 md:mt-10 mb-6 md:mb-8 bg-primary-50/70 rounded-lg p-3 md:p-4 flex flex-col sm:flex-row items-center justify-center shadow-sm border border-primary-200">
+              <div className="w-10 h-10 rounded-full bg-primary-200 flex items-center justify-center mb-2 sm:mb-0 sm:mr-3">
+                <Check size={20} className="text-primary-800" />
               </div>
               <p className="text-center sm:text-left text-base md:text-lg mb-2 sm:mb-0">
-                Todas nuestras <span className="font-semibold text-[#D4AF37]">consultas iniciales son gratuitas</span>
+                Todas nuestras <span className="font-semibold text-primary-800">consultas iniciales son gratuitas</span>
               </p>
               <a 
                 href="#contacto" 
-                className="ml-0 sm:ml-4 bg-[#D4AF37] hover:bg-[#c9a431] text-black px-4 py-2 rounded-md text-sm font-medium transition-all duration-300"
+                className="ml-0 sm:ml-4 bg-primary-700 hover:bg-primary-800 text-white px-4 py-2 rounded-md text-sm font-medium transition-all duration-300"
               >
                 Contactar
               </a>
             </div>
-            
-            <p className="mt-4 md:mt-6 text-base md:text-lg text-white/70 max-w-2xl mx-auto">
-              Especialistas en <span className="text-[#D4AF37] font-semibold">accidentes laborales</span> y <span className="text-[#D4AF37] font-semibold">despidos injustificados</span>, brindando asesoramiento legal personalizado.
-            </p>
           </div>
           
-          {/* Servicios destacados - Mobile First */}
+          {/* Servicios destacados - Rediseñado con aspecto más sobrio y profesional */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-12 md:mb-16">
             {featuredServices.map((service, index) => (
               <div 
                 key={index}
-                className="group relative overflow-hidden rounded-lg bg-gradient-to-br from-zinc-900 to-black border-2 border-[#D4AF37]/20 hover:border-[#D4AF37]/60 transition-all duration-500 shadow-xl hover:shadow-2xl hover:shadow-[#D4AF37]/10 transform hover:-translate-y-1"
+                className="group relative overflow-hidden rounded-lg bg-white border border-primary-200 hover:border-primary-400 transition-all duration-500 shadow-md hover:shadow-lg"
               >
                 <div className="absolute top-0 right-0">
-                  <div className="bg-[#D4AF37] text-black text-xs font-bold py-1 px-3 rounded-bl-lg">
+                  <div className="bg-primary-800 text-white text-xs font-bold py-1 px-3 rounded-bl-lg">
                     ESPECIALISTAS
                   </div>
                 </div>
                 
-                <div className="absolute top-0 right-0 w-40 h-40 bg-[#D4AF37]/10 rounded-full blur-3xl"></div>
-                <div className="relative z-10 p-6 md:p-8 h-full flex flex-col">
-                  <div className="flex items-center mb-4 md:mb-6">
-                    <div className="p-2 md:p-3 inline-flex rounded-full bg-[#D4AF37]/10 text-[#D4AF37] mr-3 md:mr-4 group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <div className="flex items-start mb-4 md:mb-6">
+                    <div className="p-3 inline-flex rounded-full bg-primary-100 text-primary-800 mr-3 md:mr-4 flex-shrink-0">
                       {service.icon}
                     </div>
-                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold group-hover:text-[#D4AF37] transition-colors duration-300">
+                    <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-primary-800 group-hover:text-primary-700 transition-colors duration-300 mt-1">
                       {service.title}
                     </h3>
                   </div>
                   
-                  <p className="text-sm md:text-base text-white/70 font-light leading-relaxed grow mb-5 md:mb-6">
+                  <p className="text-sm md:text-base text-primary-700 leading-relaxed grow mb-5 md:mb-6">
                     {service.description}
                   </p>
                   
                   <a 
                     href="#contacto" 
-                    className="self-center w-full bg-[#D4AF37]/10 hover:bg-[#D4AF37] text-[#D4AF37] hover:text-black py-3 px-4 md:px-6 rounded-md flex items-center justify-center text-sm font-medium transition-all duration-300 border border-[#D4AF37]/30 hover:border-[#D4AF37]"
+                    className="self-center w-full bg-primary-700 hover:bg-primary-800 text-white py-3 px-4 md:px-6 rounded-md flex items-center justify-center text-sm font-medium transition-all duration-300 shadow-sm"
                   >
                     <span>Consultar ahora</span>
                     <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -418,101 +352,144 @@ function App() {
               </div>
             ))}
           </div>
+
+          {/* Servicios adicionales - Versión para móvil */}
+          <ServicesMobileCarousel 
+            services={otherServices}
+            activeSlide={activeSlide}
+            setActiveSlide={setActiveSlide}
+            sliderRef={sliderRef}
+            prevSlide={prevSlide}
+            nextSlide={nextSlide}
+          />
           
-          {/* Carrusel de servicios en móvil */}
-          <div className="mb-10 md:mb-0">
-            <div className="flex items-center justify-center mb-6">
-              <div className="h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent w-12 mr-3"></div>
-              <h3 className="text-lg md:text-xl font-semibold text-white/90 text-center">Otros servicios legales</h3>
-              <div className="h-[1px] bg-gradient-to-r from-transparent via-zinc-700 to-transparent w-12 ml-3"></div>
-            </div>
-            
-            {/* Componente de carrusel para móvil */}
-            <ServicesMobileCarousel 
-              services={otherServices}
-              activeSlide={activeSlide}
-              setActiveSlide={setActiveSlide}
-              sliderRef={sliderRef}
-              prevSlide={prevSlide}
-              nextSlide={nextSlide}
-            />
-            
-            {/* Grid de servicios para desktop */}
-            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-              {otherServices.map((service, index) => (
-                <div 
-                  key={index} 
-                  className="group bg-zinc-900/50 border border-zinc-800 hover:border-[#D4AF37]/30 p-5 md:p-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-black/50"
-                >
-                  <div className="p-2 md:p-3 mb-3 md:mb-4 inline-flex rounded-full bg-black/50 text-[#D4AF37] group-hover:bg-[#D4AF37]/10 transition-colors duration-300">
-                    {service.icon}
-                  </div>
-                  <h4 className="text-base md:text-lg font-semibold mb-2 md:mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">{service.title}</h4>
-                  <p className="text-sm text-white/70 font-light">{service.description}</p>
-                  <a href="#contacto" className="text-[#D4AF37]/80 text-xs md:text-sm mt-3 md:mt-4 inline-flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    Consultar gratis <ArrowRight size={12} className="ml-1 group-hover:translate-x-1 transition-transform duration-300" />
-                  </a>
+          {/* Servicios adicionales - Versión para desktop */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+            {otherServices.map((service, index) => (
+              <div 
+                key={index}
+                className="group bg-white rounded-lg border border-primary-200 hover:border-primary-400 p-5 md:p-6 shadow-sm hover:shadow-md transition-all duration-300"
+              >
+                <div className="p-3 inline-flex rounded-full bg-primary-100 text-primary-700 mb-3">
+                  {service.icon}
                 </div>
-              ))}
-            </div>
-          </div>
-          
-          {/* CTA - Mobile First */}
-          <div className="mt-10 md:mt-16 text-center">
-            <a 
-              href="#contacto" 
-              className="inline-flex items-center justify-center bg-[#D4AF37] hover:bg-[#E5C76B] text-black px-8 py-3 md:px-10 md:py-4 rounded-md font-semibold text-base md:text-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D4AF37]/20 group w-full sm:w-auto"
-            >
-              Consulta ahora
-              <ArrowRight size={20} className="ml-2 md:ml-3 group-hover:translate-x-1 md:group-hover:translate-x-2 transition-transform duration-300" />
-            </a>
+                <h4 className="text-lg font-semibold mb-2 text-primary-800">{service.title}</h4>
+                <p className="text-sm text-primary-700 mb-4">{service.description}</p>
+                <a href="#contacto" className="text-primary-700 hover:text-primary-900 text-sm mt-auto flex items-center font-medium">
+                  Consultar <ArrowRight size={12} className="ml-1" />
+                </a>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section - Mobile First */}
-      <section id="testimonios" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 overflow-hidden">
+      {/* Testimonials Section - Rediseñada con paleta de azules */}
+      <section id="testimonios" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-gradient-to-b from-primary-50/30 to-primary-50/30 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
                 TESTIMONIOS
               </span>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"></div>
             </h2>
+            
+            <p className="text-base md:text-lg max-w-3xl mx-auto mt-8 md:mt-10 text-primary-700">
+              Conoce la experiencia de nuestros clientes con nuestra firma legal especializada en derecho laboral
+            </p>
           </div>
           
-          {/* Componente de carrusel de testimonios para móvil */}
-          <TestimonialsMobileCarousel 
-            testimonials={testimonials}
-            activeTestimonial={activeTestimonial}
-            setActiveTestimonial={setActiveTestimonial}
-            testimonialSliderRef={testimonialSliderRef}
-            prevTestimonial={prevTestimonial}
-            nextTestimonial={nextTestimonial}
-          />
+          {/* Carrusel para móvil - Rediseñado */}
+          <div className="lg:hidden mb-8">
+            <div className="relative">
+              <button 
+                onClick={prevTestimonial}
+                className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full text-primary-600 hover:bg-primary-100 transition-colors shadow-sm"
+                aria-label="Testimonio anterior"
+              >
+                <ChevronLeft size={16} />
+              </button>
+              
+              <div 
+                ref={testimonialSliderRef}
+                className="flex overflow-x-scroll snap-x snap-mandatory scrollbar-hide w-full"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <div 
+                    key={index} 
+                    className="min-w-full snap-center px-4"
+                  >
+                    <div className="bg-white p-6 rounded-lg h-full flex flex-col border border-primary-100 shadow-md">
+                      <div className="flex mb-4 space-x-1">
+                        {[1, 2, 3, 4, 5].map(n => (
+                          <Star key={n} size={16} className="fill-primary-400 text-primary-400" />
+                        ))}
+                      </div>
+                      <p className="mb-5 text-primary-800 italic leading-relaxed relative z-10">"{testimonial.text}"</p>
+                      <div className="mt-auto">
+                        <div className="flex items-center space-x-3 pt-4 border-t border-primary-100">
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center uppercase text-white font-bold">
+                            {testimonial.name.charAt(0)}
+                          </div>
+                          <div>
+                            <h4 className="text-primary-700 font-bold">{testimonial.name}</h4>
+                            <p className="text-primary-500 text-xs">{testimonial.type}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <button 
+                onClick={nextTestimonial}
+                className="absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-white/80 p-2 rounded-full text-primary-600 hover:bg-primary-100 transition-colors shadow-sm"
+                aria-label="Siguiente testimonio"
+              >
+                <ChevronRight size={16} />
+              </button>
+            </div>
+            
+            <div className="flex justify-center mt-6 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setActiveTestimonial(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    activeTestimonial === index ? 'bg-primary-500 w-6' : 'bg-primary-200 w-2'
+                  }`}
+                  aria-label={`Ir a testimonio ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
           
-          {/* Grid de testimonios para desktop */}
+          {/* Grid de testimonios para desktop - Rediseñado */}
           <div className="hidden lg:grid lg:grid-cols-3 gap-6 md:gap-8">
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="group relative p-0.5 bg-gradient-to-br from-black via-zinc-800/10 to-black rounded-lg">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/5 to-[#D4AF37]/0 opacity-0 group-hover:opacity-100 transition-all duration-700 rounded-lg"></div>
-                <div className="relative bg-zinc-900/50 backdrop-blur-sm z-10 p-6 md:p-8 rounded-lg h-full flex flex-col">
-                  <div className="absolute -top-4 left-8 text-[#D4AF37] text-7xl opacity-20 font-serif">"</div>
-                  <div className="flex mb-4 md:mb-6 space-x-1">
+              <div 
+                key={index} 
+                className="group bg-white rounded-lg shadow-md hover:shadow-lg border border-primary-100 hover:border-primary-300 transition-all duration-300 hover:-translate-y-1"
+              >
+                <div className="p-6 md:p-8 h-full flex flex-col">
+                  <div className="absolute -top-4 left-8 text-primary-200 text-7xl opacity-20 font-serif">"</div>
+                  <div className="flex mb-4 md:mb-6 space-x-1 z-10 relative">
                     {[1, 2, 3, 4, 5].map(n => (
-                      <Star key={n} size={16} className="fill-[#D4AF37] text-[#D4AF37]" />
+                      <Star key={n} size={16} className="fill-primary-400 text-primary-400" />
                     ))}
                   </div>
-                  <p className="mb-5 md:mb-6 text-sm md:text-base text-white/80 italic leading-relaxed relative z-10">"{testimonial.text}"</p>
+                  <p className="mb-5 md:mb-6 text-sm md:text-base text-primary-700 italic leading-relaxed relative z-10">"{testimonial.text}"</p>
                   <div className="mt-auto">
-                    <div className="flex items-center space-x-3 pt-4 border-t border-zinc-800/30">
-                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[#D4AF37] to-[#9F7C27] flex items-center justify-center uppercase text-black font-bold">
+                    <div className="flex items-center space-x-3 pt-4 border-t border-primary-100/50">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-400 to-primary-600 flex items-center justify-center uppercase text-white font-bold">
                         {testimonial.name.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="text-[#D4AF37] font-bold">{testimonial.name}</h4>
-                        <p className="text-white/50 text-xs md:text-sm">{testimonial.type}</p>
+                        <h4 className="text-primary-700 font-bold">{testimonial.name}</h4>
+                        <p className="text-primary-500 text-xs md:text-sm">{testimonial.type}</p>
                       </div>
                     </div>
                   </div>
@@ -521,11 +498,11 @@ function App() {
             ))}
           </div>
           
-          {/* CTA - Mobile First */}
+          {/* CTA - Rediseñado */}
           <div className="mt-10 text-center">
             <a 
               href="#contacto" 
-              className="inline-flex items-center justify-center bg-[#D4AF37] hover:bg-[#E5C76B] text-black px-6 py-3 md:px-8 md:py-3 rounded-md font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#D4AF37]/20 group w-full sm:w-auto"
+              className="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 md:px-8 md:py-3 rounded-md font-semibold transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-primary-300/20 group w-full sm:w-auto"
             >
               Consulta ahora
               <ArrowRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform duration-300" />
@@ -534,37 +511,35 @@ function App() {
         </div>
       </section>
 
-      {/* Contact Section - Mobile First - Rediseñado */}
-      <section id="contacto" className="relative py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-zinc-950 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/pattern.png')] opacity-5"></div>
+      {/* Contact Section - Rediseñada */}
+      <section id="contacto" className="relative py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/dots-pattern.svg')] bg-repeat opacity-5"></div>
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="mb-10 md:mb-16 lg:mb-24 text-center">
             <h2 className="inline-block relative">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#E5C76B]">
+              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
                 CONTACTO
               </span>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"></div>
             </h2>
             
-            <div className="max-w-3xl mx-auto mt-8 md:mt-10 mb-6 md:mb-8 bg-[#D4AF37]/10 border border-[#D4AF37]/20 rounded-lg p-3 md:p-4 flex items-center justify-center">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#D4AF37]/20 flex items-center justify-center mr-3">
-                <Check size={16} className="text-[#D4AF37]" />
+            <div className="max-w-3xl mx-auto mt-8 md:mt-10 mb-6 md:mb-8 bg-primary-100/50 rounded-lg p-3 md:p-4 flex items-center justify-center shadow-sm">
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-200 flex items-center justify-center mr-3">
+                <Check size={16} className="text-primary-700" />
               </div>
               <p className="text-sm md:text-lg">
-                <span className="font-semibold text-[#D4AF37]">La consulta es totalmente gratuita</span>
+                <span className="font-semibold text-primary-700">La consulta es totalmente gratuita</span>
               </p>
             </div>
           </div>
           
-          {/* Opciones de contacto - Rediseñado */}
+          {/* Opciones de contacto - Rediseñadas */}
           <div className="max-w-3xl mx-auto">
             <div className="grid gap-8">
               {/* WhatsApp - Opción recomendada */}
-              <div className="relative bg-black/30 backdrop-blur-sm rounded-md border border-zinc-800/50 p-6 md:p-8 overflow-hidden">
-                <div className="absolute -top-5 -right-5 w-40 h-40 bg-[#25D366]/10 rounded-full blur-3xl"></div>
-                
+              <div className="relative bg-white rounded-md border border-primary-200 p-6 md:p-8 overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
                 {/* Etiqueta de recomendado */}
-                <div className="absolute -right-10 top-8 bg-[#D4AF37] text-black px-12 py-1 transform rotate-45 text-xs font-bold">
+                <div className="absolute -right-10 top-8 bg-primary-500 text-white px-12 py-1 transform rotate-45 text-xs font-bold">
                   RECOMENDADO
                 </div>
                 
@@ -579,12 +554,12 @@ function App() {
                       </svg>
                     </div>
                     <div>
-                      <h3 className="text-xl md:text-2xl font-semibold text-white">Contactar por WhatsApp</h3>
-                      <p className="text-white/60 text-sm md:text-base">Respuesta inmediata, los 7 días de la semana</p>
+                      <h3 className="text-xl md:text-2xl font-semibold text-primary-800">Contactar por WhatsApp</h3>
+                      <p className="text-primary-600 text-sm md:text-base">Respuesta inmediata, los 7 días de la semana</p>
                     </div>
                   </div>
                   
-                  <p className="text-white/70 mb-6 text-sm md:text-base">
+                  <p className="text-primary-700 mb-6 text-sm md:text-base">
                     Envíanos un mensaje por WhatsApp y recibirás atención personalizada de nuestros abogados especialistas. Es la forma más rápida de recibir asesoramiento.
                   </p>
                   
@@ -594,8 +569,8 @@ function App() {
                     rel="noopener noreferrer"
                     className="group relative overflow-hidden rounded-md w-full inline-flex items-center justify-center"
                   >
-                    <div className="relative bg-[#25D366] text-white p-4 md:p-5 font-semibold z-10 w-full flex items-center justify-center">
-                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-3 text-white">
+                    <div className="relative bg-[#25D366] text-white p-4 md:p-5 font-semibold z-10 w-full flex items-center justify-center hover:bg-[#1ea952] transition-colors duration-300">
+                      <svg viewBox="0 0 24 24" className="w-5 h-5 mr-3 flex-shrink-0">
                         <path 
                           fill="currentColor" 
                           d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
@@ -604,137 +579,40 @@ function App() {
                       <span className="text-base md:text-lg tracking-wider">CONSULTAR POR WHATSAPP</span>
                       <ArrowRight className="ml-3 w-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </div>
-                    <div className="absolute inset-0 bg-[#1ea952] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                   </a>
-                  
-                  <p className="text-center text-white/50 text-xs mt-3">¿NO TE FUNCIONÓ EL BOTÓN? Copiá nuestro numero y mandanos un mensaje {contactPhone}</p>
                 </div>
-              </div>
-              
-              {/* Formulario desplegable */}
-              <div className="bg-black/30 backdrop-blur-sm rounded-md border border-zinc-800/50 overflow-hidden">
-                {/* Trigger para expandir/colapsar */}
-                <div 
-                  className="p-6 flex items-center justify-between cursor-pointer"
-                  onClick={() => setFormExpanded(!formExpanded)}
-                >
-                  <div className="flex items-center">
-                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-900 flex items-center justify-center mr-4">
-                      <Mail size={20} className="text-[#D4AF37]" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-semibold text-white">O completa el formulario</h3>
-                      <p className="text-white/60 text-sm md:text-base">Te contactaremos en horario de atención</p>
-                    </div>
-                  </div>
-                  
-                  <ChevronDown 
-                    size={24} 
-                    className={`text-[#D4AF37] transition-transform duration-300 ${formExpanded ? 'rotate-180' : ''}`}
-                  />
-                </div>
-                
-                {/* Formulario desplegable */}
-                {formExpanded && (
-                  <div className="p-6 pt-0 border-t border-zinc-800/50">
-                    <div className="space-y-4 md:space-y-6">
-                      <div>
-                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Nombre completo</label>
-                        <input
-                          type="text"
-                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                          placeholder="Su nombre"
-                        />
-                      </div>
-                      <div>
-                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Correo electrónico</label>
-                        <input
-                          type="email"
-                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                          placeholder={contactEmail}
-                        />
-                      </div>
-                      <div>
-                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Teléfono</label>
-                        <input
-                          type="tel"
-                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base"
-                          placeholder={contactPhone}
-                        />
-                      </div>
-                      <div>
-                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Asunto</label>
-                        <select className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors text-sm md:text-base">
-                          <option>Consulta General</option>
-                          <option>Despido Laboral</option>
-                          <option>Accidente de Trabajo</option>
-                          <option>Conflicto Sindical</option>
-                          <option>Otro</option>
-                        </select>
-                      </div>
-                      <div>
-                        <label className="text-white/60 text-xs md:text-sm mb-1 md:mb-2 block">Mensaje</label>
-                        <textarea
-                          rows={3}
-                          className="w-full bg-black/60 border border-zinc-800 p-3 md:p-4 rounded-md focus:outline-none focus:border-[#D4AF37] transition-colors resize-none text-sm md:text-base"
-                          placeholder="Describa brevemente su caso"
-                        ></textarea>
-                      </div>
-                      <button className="group relative overflow-hidden w-full rounded-md">
-                        <div className="relative bg-[#D4AF37] text-black p-3 md:p-4 font-semibold z-10 group-hover:text-white transition-colors duration-300 flex items-center justify-center">
-                          <span className="tracking-wider text-sm md:text-base">ENVIAR CONSULTA</span>
-                          <ArrowRight className="ml-2 w-0 group-hover:w-5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                        </div>
-                        <div className="absolute inset-0 bg-black transform translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                      </button>
-                    </div>
-                  </div>
-                )}
               </div>
             </div>
             
             {/* Información de contacto adicional */}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
-                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                  <Phone size={18} className="text-[#D4AF37]" />
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-white hover:bg-primary-50 transition-colors duration-300 border border-primary-100 shadow-sm">
+                <div className="p-3 bg-primary-50 rounded-md border border-primary-200 group-hover:bg-white transition-colors duration-300">
+                  <Phone size={18} className="text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/50 mb-1">Teléfono</p>
-                  <a href={`tel:${contactPhoneNumeric}`} className="text-sm text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactPhone}</a>
+                  <p className="text-xs text-primary-500 mb-1">Teléfono</p>
+                  <a href={`tel:${contactPhoneNumeric}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">{contactPhone}</a>
                 </div>
               </div>
               
-              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
-                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                  <Mail size={18} className="text-[#D4AF37]" />
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-white hover:bg-primary-50 transition-colors duration-300 border border-primary-100 shadow-sm">
+                <div className="p-3 bg-primary-50 rounded-md border border-primary-200 group-hover:bg-white transition-colors duration-300">
+                  <Mail size={18} className="text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/50 mb-1">Email</p>
-                  <a href={`mailto:${contactEmail}`} className="text-sm text-white/90 hover:text-[#D4AF37] transition-colors duration-300">{contactEmail}</a>
+                  <p className="text-xs text-primary-500 mb-1">Email</p>
+                  <a href={`mailto:${contactEmail}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">{contactEmail}</a>
                 </div>
               </div>
               
-              <div className="group flex items-start space-x-4 p-4 rounded-md bg-zinc-900/20 hover:bg-zinc-900/50 transition-colors duration-300">
-                <div className="p-3 bg-black rounded-md border border-zinc-800 group-hover:border-[#D4AF37]/30 transition-colors duration-300">
-                  <MapPin size={18} className="text-[#D4AF37]" />
+              <div className="group flex items-start space-x-4 p-4 rounded-md bg-white hover:bg-primary-50 transition-colors duration-300 border border-primary-100 shadow-sm">
+                <div className="p-3 bg-primary-50 rounded-md border border-primary-200 group-hover:bg-white transition-colors duration-300">
+                  <MapPin size={18} className="text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-white/50 mb-1">Horario</p>
-                  <p className="text-sm text-white/90">Lunes, Miércoles y Jueves de 16:00 a 19:00</p>
-                </div>
-              </div>
-            </div>
-            
-            {/* Dirección */}
-            <div className="mt-8 p-4 rounded-md bg-zinc-900/20 border border-zinc-800/50">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 bg-black rounded-md border border-zinc-800">
-                  <MapPin size={18} className="text-[#D4AF37]" />
-                </div>
-                <div>
-                  <p className="text-xs text-white/50 mb-1">Dirección</p>
-                  <p className="text-sm text-white/90">{contactAddress}</p>
+                  <p className="text-xs text-primary-500 mb-1">Horario</p>
+                  <p className="text-sm text-primary-700">Lunes, Miércoles y Jueves de 16:00 a 19:00</p>
                 </div>
               </div>
             </div>
@@ -742,18 +620,20 @@ function App() {
         </div>
       </section>
 
-      {/* Footer - Mobile First */}
-      <footer className="bg-black py-8 md:py-10 px-4 md:px-6 border-t border-zinc-900">
+      {/* Footer - Rediseñado con paleta de azules */}
+      <footer className="bg-primary-800 py-8 md:py-10 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           {/* Logo y Navegación - Apilados en móvil, en fila en desktop */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8">
-            <div className="text-lg md:text-xl font-bold tracking-wider text-[#D4AF37] mb-6 md:mb-0">AIELLO, ARGENIO & ASOCIADOS</div>
+            <div className="text-lg md:text-xl font-bold tracking-wider text-white mb-6 md:mb-0">
+              AIELLO, ARGENIO & ASOCIADOS
+            </div>
             <div className="grid grid-cols-2 gap-x-12 gap-y-4 md:flex md:space-x-6 lg:space-x-8">
-              {['Inicio', 'Sobre Nosotros', 'Servicios', 'Testimonios', 'Contacto'].map((item, index) => (
+              {['Inicio', 'Nosotros', 'Servicios', 'Testimonios', 'Contacto'].map((item, index) => (
                 <a 
                   key={index}
                   href={`#${item.toLowerCase().replace(' ', '-')}`}
-                  className="text-white/60 hover:text-[#D4AF37] transition-colors duration-300 text-sm"
+                  className="text-primary-100 hover:text-white transition-colors duration-300 text-sm"
                 >
                   {item}
                 </a>
@@ -761,10 +641,66 @@ function App() {
             </div>
           </div>
           
+          {/* Información de contacto */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center md:text-left">
+            <div>
+              <h4 className="text-primary-200 font-semibold mb-3">Contacto</h4>
+              <p className="text-primary-100 text-sm mb-1">
+                <Phone size={14} className="inline mr-2" />
+                {contactPhone}
+              </p>
+              <p className="text-primary-100 text-sm">
+                <Mail size={14} className="inline mr-2" />
+                {contactEmail}
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-primary-200 font-semibold mb-3">Dirección</h4>
+              <p className="text-primary-100 text-sm">
+                <MapPin size={14} className="inline mr-2" />
+                {contactAddress}
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="text-primary-200 font-semibold mb-3">Horario de atención</h4>
+              <p className="text-primary-100 text-sm">
+                <Clock size={14} className="inline mr-2" />
+                Lunes, Miércoles y Jueves de 16:00 a 19:00
+              </p>
+            </div>
+          </div>
+          
           {/* Copyright - Mobile First */}
-          <div className="border-t border-zinc-900 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-            <div className="text-white/40 text-xs md:text-sm mb-3 md:mb-0">&copy; 2025 Lu&Co Soft. Sitio desarrollado para Aiello, Argenio & Asociados. </div>
-
+          <div className="border-t border-primary-700/50 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+            <a href='https://luco-soft.com' className="text-primary-200 text-xs md:text-sm mb-3 md:mb-0">
+              &copy; {new Date().getFullYear()} Lu&Co Soft. Sitio desarrollado para Aiello, Argenio & Asociados.
+            </a>
+            
+            <div className="flex space-x-4">
+              <a 
+                href="#" 
+                className="text-primary-200 hover:text-primary-50 transition-colors duration-300"
+                aria-label="Términos y condiciones"
+              >
+                <FileText size={16} />
+              </a>
+              <a 
+                href={`https://wa.me/${contactPhoneNumeric}?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20una%20consulta%20gratuita.`} 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary-200 hover:text-primary-50 transition-colors duration-300"
+                aria-label="Contactar por WhatsApp"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4">
+                  <path 
+                    fill="currentColor" 
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </footer>
@@ -772,7 +708,7 @@ function App() {
   )
 }
 
-// Componente de carrusel de servicios para móvil
+// Componente de carrusel de servicios para móvil actualizado con paleta más seria
 function ServicesMobileCarousel({ 
   services, 
   activeSlide, 
@@ -793,7 +729,7 @@ function ServicesMobileCarousel({
       <div className="relative">
         <button 
           onClick={prevSlide}
-          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
+          className="absolute left-1 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full text-primary-700 hover:bg-primary-100 transition-colors shadow-sm"
           aria-label="Servicio anterior"
         >
           <ChevronLeft size={16} />
@@ -809,14 +745,14 @@ function ServicesMobileCarousel({
               key={index} 
               className="min-w-full snap-center px-4"
             >
-              <div className="bg-zinc-900/70 border border-zinc-800 hover:border-[#D4AF37]/30 p-5 rounded-md h-full flex flex-col transition-all duration-300">
-                <div className="p-2 inline-flex rounded-full bg-black/50 text-[#D4AF37] mb-3 self-start">
+              <div className="bg-white border border-primary-200 hover:border-primary-400 p-5 rounded-md h-full flex flex-col transition-all duration-300 shadow-sm">
+                <div className="p-3 inline-flex rounded-full bg-primary-100 text-primary-700 mb-3 self-start">
                   {service.icon}
                 </div>
-                <h4 className="text-lg font-semibold mb-2 text-[#D4AF37]">{service.title}</h4>
-                <p className="text-white/70 text-sm leading-relaxed mb-4">{service.description}</p>
-                <a href="#contacto" className="text-[#D4AF37] text-sm mt-auto self-end flex items-center">
-                  Consultar <ArrowRight size={12} />
+                <h4 className="text-lg font-semibold mb-2 text-primary-800">{service.title}</h4>
+                <p className="text-primary-700 text-sm leading-relaxed mb-4">{service.description}</p>
+                <a href="#contacto" className="text-primary-700 hover:text-primary-800 text-sm mt-auto self-end flex items-center font-medium">
+                  Consultar <ArrowRight size={12} className="ml-1" />
                 </a>
               </div>
             </div>
@@ -825,7 +761,7 @@ function ServicesMobileCarousel({
         
         <button 
           onClick={nextSlide}
-          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-black/50 p-2 rounded-full text-[#D4AF37] hover:bg-[#D4AF37]/20 transition-colors"
+          className="absolute right-1 top-1/2 -translate-y-1/2 z-10 bg-white p-2 rounded-full text-primary-700 hover:bg-primary-100 transition-colors shadow-sm"
           aria-label="Siguiente servicio"
         >
           <ChevronRight size={16} />
@@ -838,7 +774,7 @@ function ServicesMobileCarousel({
             key={index}
             onClick={() => setActiveSlide(index)}
             className={`h-2 rounded-full transition-all duration-300 ${
-              activeSlide === index ? 'bg-[#D4AF37] w-6' : 'bg-white/30 w-2'
+              activeSlide === index ? 'bg-primary-600 w-6' : 'bg-primary-200 w-2'
             }`}
             aria-label={`Ir a servicio ${index + 1}`}
           />
