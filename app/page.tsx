@@ -1,5 +1,5 @@
 "use client"
-import { Scale, Users, Trophy, MessageSquare, Phone, Mail, MapPin, ChevronDown, ArrowRight, Briefcase, GraduationCap, FileText, Handshake, Clock, Shield, Star, ChevronLeft, ChevronRight, MessageCircle, Check, Menu, X } from 'lucide-react'
+import { Scale, Users, Trophy, MessageSquare, Phone, Mail, MapPin, ChevronDown, ArrowRight, Briefcase, GraduationCap, FileText, Handshake, Clock, Shield, Star, ChevronLeft, ChevronRight, MessageCircle, Check, Menu, X, UserPlus, ShieldPlus } from 'lucide-react'
 import { useState, useRef, useEffect } from 'react'
 
 // Definir las constantes antes de usarlas
@@ -41,8 +41,8 @@ const otherServices = [
 
 function App() {
   // Datos de contacto como variables
-  const contactPhone = "+54 11 3002-3117";
-  const contactPhoneNumeric = "5491130023117";
+  const contactPhone = "+54 (11) 2294-4141";
+  const contactPhoneNumeric = "5491122944141";
   const contactEmail = "aielloargenio@gmail.com";
   const contactAddress = "Av. Lope de Vega 1133 6to Piso Dto B, Villa Luro, CABA";
   
@@ -132,7 +132,12 @@ function App() {
           <img 
             src="/bg-hero-light.png" 
             alt="Fondo" 
-            className="object-cover w-full h-full opacity-95"
+            className="hidden sm:block object-cover w-full h-full opacity-95"
+          />
+                    <img 
+            src="/bg-hero-ligth-mobile.png" 
+            alt="Fondo" 
+            className="block sm:hidden object-cover w-full h-full opacity-95"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-primary-100/60 via-primary-100/70 to-primary-100/100"></div>
         </div>
@@ -144,8 +149,11 @@ function App() {
         <nav className="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-primary-100/30 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4 md:px-6 md:py-5 flex justify-between items-center">
             <div className="relative">
-              <div className="text-xl md:text-lg lg:text-2xl font-bold tracking-wider text-primary-800">
-                <span className=''>AIELLO, ARGENIO & ASOC</span>
+              <div className="flex flex-col">
+                <div className="text-xl md:text-lg lg:text-2xl font-bold tracking-wider text-primary-800">
+                  <span className=''>AIELLO, ARGENIO & ASOC</span>
+                </div>
+                <span className="text-xs text-primary-600 -mt-1">Abogados y médico legista</span>
               </div>
               <div className="absolute -bottom-1 left-0 w-1/2 h-[2px] bg-gradient-to-r from-primary-400 to-transparent"></div>
             </div>
@@ -180,8 +188,8 @@ function App() {
           <div className="relative max-w-4xl">
             {/* Bordes decorativos, reducidos en móvil */}
             <div className="absolute -top-5 -left-5 w-10 h-10 md:w-20 md:h-20 border-l-2 border-t-2 border-primary-300"></div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-6 text-primary-900 leading-tight">
-              EXPERTOS EN<br/>DERECHO LABORAL
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-5 md:mb-6 text-primary-900 leading-tight">
+              EXPERTOS EN<br/>DERECHO LABORAL<br/> Y MEDICINA DEL TRABAJO
             </h1>
             <div className="absolute -bottom-5 -right-5 w-10 h-10 md:w-20 md:h-20 border-r-2 border-b-2 border-primary-300"></div>
           </div>
@@ -251,38 +259,89 @@ function App() {
         </div>
       </header>
 
-      {/* About Section - Rediseñada */}
-      <section id="nosotros" className="py-16 md:py-20 lg:py-32 px-4 md:px-6 bg-gradient-to-b from-primary-50/30  to-primary-50/30 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-12 md:mb-16 lg:mb-24 text-center">
-            <h2 className="inline-block relative">
-              <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
-                SOBRE NOSOTROS
-              </span>
-              <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"></div>
-            </h2>
-            
-            <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto mt-8 md:mt-12 text-primary-800 leading-relaxed">
-              Somos un estudio jurídico especializado en derecho laboral con más de 20 años de trayectoria, brindando asesoramiento legal de excelencia tanto a empresas como a trabajadores. Nuestro compromiso es ofrecer soluciones eficientes y personalizadas para cada caso.
+{/* About Section - Rediseñada con padding vertical reducido */}
+<section id="nosotros" className="py-10 md:py-14 lg:py-20 px-4 md:px-6 bg-gradient-to-b from-primary-50/30 to-primary-50/30 overflow-hidden">
+  <div className="max-w-7xl mx-auto">
+    <div className="mb-8 md:mb-10 lg:mb-14 text-center">
+      <h2 className="inline-block relative">
+        <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary-800">
+          SOBRE NOSOTROS
+        </span>
+        <div className="absolute -bottom-3 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent"></div>
+      </h2>
+      
+      <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto mt-6 md:mt-8 text-primary-800 leading-relaxed">
+        Somos un estudio jurídico médico legal especializado en accidentes de tarbajo y derecho laboral, con más de 20 años brindando asesoramiento integral a los trabajadores. Nuestro compromiso es ofrecer soluciones eficientes y personalizadas para cada caso.
+      </p>
+    </div>
+    
+    {/* Abogados y Médico - Tarjetas separadas - Reducido espacio vertical */}
+    <div className="max-w-5xl mx-auto mb-8 md:mb-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {/* Abogados Laborales */}
+      <div className="bg-white rounded-lg shadow-md border border-primary-200 p-6 md:p-8">
+        <div className="flex flex-col items-center md:items-start">
+          <div className="p-4 inline-flex rounded-full bg-primary-100 text-primary-700 mb-4 flex-shrink-0">
+            <Scale size={28} className="md:w-8 md:h-8" />
+          </div>
+          <div className="text-center md:text-left">
+            <h3 className="text-xl md:text-2xl font-bold text-primary-800 mb-2">Abogados Laborales</h3>
+            <div className="mb-4 space-y-3">
+              <div>
+                <p className="text-primary-600 font-bold ">Dra. Julia Aiello</p>
+                <p className="text-primary-700 text-sm">Especialista en derecho laboral</p>
+              </div>
+              <div>
+                <p className="text-primary-600 font-bold">Dr. Roberto Garcia</p>
+                <p className="text-primary-700 text-sm">Especialista en derecho laboral</p>
+              </div>
+            </div>
+            <p className="text-primary-700 text-sm md:text-base">
+              Con más de 20 años de experiencia representando tanto a trabajadores como a empleadores, nuestro equipo legal está altamente capacitado para gestionar conflictos laborales, reclamaciones por despido, acuerdos y todo tipo de negociaciones en materia laboral.
             </p>
           </div>
-          
-          {/* Tarjetas - Rediseñadas */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
-            {aboutCards.map((card, index) => (
-              <div key={index} 
-                className="group bg-white rounded-lg shadow-md hover:shadow-lg border border-primary-100 hover:border-primary-300 p-6 md:p-8 transition-all duration-300 hover:translate-y-[-4px]"
-              >
-                <div className="p-3 mb-4 md:mb-5 inline-flex rounded-full bg-primary-100/50 text-primary-600">
-                  {card.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-2 md:mb-3 text-primary-800 group-hover:text-primary-600 transition-colors duration-300">{card.title}</h3>
-                <p className="text-sm md:text-base text-primary-700">{card.description}</p>
+        </div>
+      </div>
+      
+      {/* Médico Legista */}
+      <div className="bg-white rounded-lg shadow-md border border-primary-200 p-6 md:p-8">
+        <div className="flex flex-col items-center md:items-start">
+          <div className="p-4 inline-flex rounded-full bg-primary-100 text-primary-700 mb-4 flex-shrink-0">
+            <ShieldPlus size={28} className="md:w-8 md:h-8" />
+          </div>
+          <div className="text-center md:text-left h-full">
+            <div className="flex flex-col h-full">
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-primary-800 mb-2">Médico Legista</h3>
+                <p className="text-primary-600 font-bold mb-3">Dr. Osvaldo Argenio</p>
               </div>
-            ))}
+              
+              <p className="text-primary-700 text-sm md:text-base mt-auto">
+                Especialista en medicina legal con amplia experiencia en evaluación de accidentes laborales y de tránsito, enfermedades profesionales, y representación en juntas médicas.
+              </p>
+            </div>
+     
+
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+    
+    {/* Tarjetas de valores - Espacio reducido */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      {aboutCards.map((card, index) => (
+        <div key={index} 
+          className="group bg-white rounded-lg shadow-md hover:shadow-lg border border-primary-100 hover:border-primary-300 p-5 md:p-6 transition-all duration-300 hover:translate-y-[-4px]"
+        >
+          <div className="p-3 mb-3 md:mb-4 inline-flex rounded-full bg-primary-100/50 text-primary-600">
+            {card.icon}
+          </div>
+          <h3 className="text-lg md:text-xl font-semibold mb-2 text-primary-800 group-hover:text-primary-600 transition-colors duration-300">{card.title}</h3>
+          <p className="text-sm md:text-base text-primary-700">{card.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* Services Section - Rediseñada con aspecto más serio y profesional */}
       <section id="servicios" className="relative py-16 md:py-24 lg:py-32 px-4 md:px-6 bg-white overflow-hidden">
@@ -583,6 +642,120 @@ function App() {
                 </div>
               </div>
             </div>
+
+             {/* Formulario de contacto - Adaptado a paleta azul */}
+          <div id="form-contacto" className="scroll-mt-10">
+            <div className="mb-6 md:mb-8 text-center">
+
+
+              <div className="mt-8">
+
+
+
+
+                <div className="text-primary-600 text-sm">
+                  O agendanos, llamanos o mandanos mensaje
+                  <div className="mt-2 text-primary-700 font-bold text-lg">
+                    {contactPhone} <span className="text-sm font-normal">(Estudio Jurídico)</span>
+                  </div>
+                  <div className="mt-2 text-primary-700 font-bold text-lg">
+                    15-5376-2964 <span className="text-sm font-normal">(Dr. Argenio - Médico Legista)</span>
+                  </div>
+                  {/* Email del Médico Legista */}
+                  <div className="mt-2 text-primary-700 font-bold text-base">
+                    <a href={`mailto:${contactEmail}`} className="hover:text-primary-900">{contactEmail}</a> <span className="text-sm font-normal">(Estudio Jurídico)</span>
+                  </div>
+                  <div className="mt-1 text-primary-700 font-bold text-base">
+                    <a href="mailto:osvaldo.ar.genio@hotmail.com" className="hover:text-primary-900">osvaldo.ar.genio@hotmail.com</a> <span className="text-sm font-normal">(Dr. Argenio - Médico Legista)</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-6 text-primary-700 max-w-2xl mx-auto">
+                O sino podes completar el formulario y un abogado especialista
+                se comunicará contigo en menos de 24 horas.
+              </p>
+            </div>
+
+            <form className="relative p-6 md:p-8 bg-white rounded-md border border-primary-200 shadow-md">
+              <div className="space-y-4 md:space-y-6 relative z-10">
+                <div>
+                  <label className="text-primary-600 text-xs md:text-sm mb-1 md:mb-2 block">
+                    Nombre completo
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full bg-primary-50/50 border border-primary-200 p-3 md:p-4 rounded-md focus:outline-none focus:border-primary-400 transition-colors text-sm md:text-base text-primary-800"
+                    placeholder="Tu nombre"
+                  />
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="text-primary-600 text-xs md:text-sm mb-1 md:mb-2 block">
+                      Teléfono
+                    </label>
+                    <input
+                      type="tel"
+                      className="w-full bg-primary-50/50 border border-primary-200 p-3 md:p-4 rounded-md focus:outline-none focus:border-primary-400 transition-colors text-sm md:text-base text-primary-800"
+                      placeholder="Tu número de contacto"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-primary-600 text-xs md:text-sm mb-1 md:mb-2 block">
+                      Empresa donde ocurrió el accidente
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full bg-primary-50/50 border border-primary-200 p-3 md:p-4 rounded-md focus:outline-none focus:border-primary-400 transition-colors text-sm md:text-base text-primary-800"
+                      placeholder="Nombre de la empresa"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="text-primary-600 text-xs md:text-sm mb-1 md:mb-2 block">
+                    ¿Cuándo ocurrió el accidente?
+                  </label>
+                  <input
+                    type="date"
+                    className="w-full bg-primary-50/50 border border-primary-200 p-3 md:p-4 rounded-md focus:outline-none focus:border-primary-400 transition-colors text-sm md:text-base text-primary-800"
+                  />
+                </div>
+
+                <div>
+                  <label className="text-primary-600 text-xs md:text-sm mb-1 md:mb-2 block">
+                    Breve descripción del accidente
+                  </label>
+                  <textarea
+                    rows={3}
+                    className="w-full bg-primary-50/50 border border-primary-200 p-3 md:p-4 rounded-md focus:outline-none focus:border-primary-400 transition-colors resize-none text-sm md:text-base text-primary-800"
+                    placeholder="Cuéntanos brevemente qué pasó"
+                  ></textarea>
+                </div>
+
+                <div className="flex items-start space-x-2">
+                  <input
+                    type="checkbox"
+                    className="mt-1 bg-primary-50/50 border border-primary-300 rounded-sm"
+                  />
+                  <label className="text-xs text-primary-600">
+                    Acepto recibir información y ser contactado por Aiello,
+                    Argenio & Asociados para asesoramiento legal
+                  </label>
+                </div>
+
+                <button className="group relative overflow-hidden w-full rounded-md">
+                  <div className="relative bg-primary-700 text-white p-3 md:p-4 font-semibold z-10 hover:bg-primary-800 transition-colors duration-300 flex items-center justify-center">
+                    <span className="tracking-wider text-sm md:text-base">
+                      SOLICITAR ASESORAMIENTO GRATUITO
+                    </span>
+                    <ArrowRight className="ml-2 w-0 group-hover:w-5 opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  </div>
+                </button>
+              </div>
+            </form>
+          </div>
             
             {/* Información de contacto adicional */}
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -591,18 +764,28 @@ function App() {
                   <Phone size={18} className="text-primary-600" />
                 </div>
                 <div>
-                  <p className="text-xs text-primary-500 mb-1">Teléfono</p>
+                  <p className="text-xs text-primary-500 mb-1">Teléfono Estudio</p>
                   <a href={`tel:${contactPhoneNumeric}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">{contactPhone}</a>
+                  <p className="text-xs text-primary-500 mt-2 mb-1">Teléfono Médico Legista</p>
+                  <a href="tel:1553762964" className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">15-5376-2964</a>
                 </div>
               </div>
               
               <div className="group flex items-start space-x-4 p-4 rounded-md bg-white hover:bg-primary-50 transition-colors duration-300 border border-primary-100 shadow-sm">
-                <div className="p-3 bg-primary-50 rounded-md border border-primary-200 group-hover:bg-white transition-colors duration-300">
+                <div className="p-3 bg-primary-50 rounded-md border border-primary-200 group-hover:bg-white transition-colors duration-300 flex-shrink-0"> {/* Added flex-shrink-0 */}
                   <Mail size={18} className="text-primary-600" />
                 </div>
-                <div>
-                  <p className="text-xs text-primary-500 mb-1">Email</p>
-                  <a href={`mailto:${contactEmail}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">{contactEmail}</a>
+                {/* Contenedor de texto para emails */}
+                <div className="flex flex-col"> {/* Added flex flex-col */}
+                  <div> {/* Contenedor para el primer email */}
+                    <p className="text-xs text-primary-500 mb-1">Email Estudio</p>
+                    <a href={`mailto:${contactEmail}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300 break-all">{contactEmail}</a> {/* Added break-all */}
+                  </div>
+                  {/* Email del Médico Legista en la tarjeta */}
+                  <div className="mt-2"> {/* Contenedor para el segundo email con margen superior */}
+                    <p className="text-xs text-primary-500 mb-1">Email Médico Legista</p>
+                    <a href="mailto:osvaldo.ar.genio@hotmail.com" className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">osvaldo.ar.genio@hotmail<wbr/>.com</a> {/* Added break-all */}
+                  </div>
                 </div>
               </div>
               
@@ -612,7 +795,10 @@ function App() {
                 </div>
                 <div>
                   <p className="text-xs text-primary-500 mb-1">Horario</p>
-                  <p className="text-sm text-primary-700">Lunes, Miércoles y Jueves de 16:00 a 19:00</p>
+                  <p className="text-sm text-primary-700 mb-1">Lunes, Miércoles y Jueves de 16:00 a 19:00</p>
+                  {/* Ubicación del estudio */}
+                  <p className="text-xs text-primary-500 mb-1">Ubicacion</p>
+                  <p className="text-sm text-primary-700 mt-1">Av. Lope de Vega 1133 Piso 6 "B", CABA</p>
                 </div>
               </div>
             </div>
@@ -897,22 +1083,23 @@ const stats = [
   { icon: <Scale className="text-[#D4AF37] mx-auto" size={24} />, value: "2600+", label: "Casos Exitosos" }
 ]
 
+// Datos de testimonios
 const testimonials = [
   {
-    text: "Excelente estudio jurídico. Resolvieron mi caso de despido injustificado con profesionalismo y dedicación, logrando una indemnización justa.",
+    name: "Juan Pérez",
+    type: "Trabajador de la Construcción",
+    text: "Tuve un accidente en la obra y la ART no se hacía cargo como correspondía. Gracias al asesoramiento recibido, pude reclamar y conseguir la indemnización justa por mi incapacidad. Muy recomendables.",
+  },
+  {
     name: "Carlos Rodríguez",
-    type: "Empleado"
+    type: "Operario Industrial",
+    text: "Después de un accidente en la planta, quedé con secuelas y la ART me dio el alta rápido. Me puse en contacto y me ayudaron a pelear por el reconocimiento de mi incapacidad real. Lograron que me paguen lo que me correspondía.",
   },
   {
-    text: "Como empresa, valoramos enormemente su asesoramiento preventivo. Nos han ayudado a evitar conflictos laborales y a mantener un ambiente de trabajo saludable.",
-    name: "María González",
-    type: "Gerente de RRHH"
+    name: "Laura Fernández",
+    type: "Empleada Administrativa",
+    text: "Tenía problemas con el pago de mis horas extras. Gracias al estudio, pude regularizar mi situación y cobrar lo que me debían. Excelente atención y resultados.",
   },
-  {
-    text: "Después de mi accidente laboral, me sentí completamente respaldado por su equipo. Lograron que recibiera la compensación adecuada de la ART.",
-    name: "Pedro Martínez",
-    type: "Trabajador industrial"
-  }
-]
+];
 
 export default App
