@@ -44,7 +44,7 @@ function App() {
   const contactPhone = "+54 (11) 2294-4141";
   const contactPhoneNumeric = "5491122944141";
   const contactEmail = "aielloargenio@gmail.com";
-  const contactAddress = "Av. Lope de Vega 1133 6to Piso Dto B, Villa Luro, CABA";
+  const contactAddress = "Av. Lope de Vega 1133 6to Piso Dto B y PB, Villa Luro, CABA";
   
   // Estado para menú móvil
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -271,7 +271,7 @@ function App() {
       </h2>
       
       <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto mt-6 md:mt-8 text-primary-800 leading-relaxed">
-        Somos un estudio jurídico médico legal especializado en accidentes de tarbajo y derecho laboral, con más de 20 años brindando asesoramiento integral a los trabajadores. Nuestro compromiso es ofrecer soluciones eficientes y personalizadas para cada caso.
+        Somos un estudio jurídico médico legal especializado en accidentes de trabajo y derecho laboral, con más de 20 años brindando asesoramiento integral a los trabajadores. Nuestro compromiso es ofrecer soluciones eficientes y personalizadas para cada caso.
       </p>
     </div>
     
@@ -296,7 +296,7 @@ function App() {
               </div>
             </div>
             <p className="text-primary-700 text-sm md:text-base">
-              Con más de 20 años de experiencia representando tanto a trabajadores como a empleadores, nuestro equipo legal está altamente capacitado para gestionar conflictos laborales, reclamaciones por despido, acuerdos y todo tipo de negociaciones en materia laboral.
+              Con más de 20 años de experiencia representando tanto a trabajadores como a empleadores, nuestro equipo legal está altamente capacitado para gestionar conflictos laborales, reclamos por despido, acuerdos y todo tipo de negociaciones en materia laboral.
             </p>
           </div>
         </div>
@@ -659,7 +659,7 @@ function App() {
                     {contactPhone} <span className="text-sm font-normal">(Estudio Jurídico)</span>
                   </div>
                   <div className="mt-2 text-primary-700 font-bold text-lg">
-                    15-5376-2964 <span className="text-sm font-normal">(Dr. Argenio - Médico Legista)</span>
+                  +54 (11) 5376-2964 <span className="text-sm font-normal">(Dr. Argenio - Médico Legista)</span>
                   </div>
                   {/* Email del Médico Legista */}
                   <div className="mt-2 text-primary-700 font-bold text-base">
@@ -767,7 +767,7 @@ function App() {
                   <p className="text-xs text-primary-500 mb-1">Teléfono Estudio</p>
                   <a href={`tel:${contactPhoneNumeric}`} className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">{contactPhone}</a>
                   <p className="text-xs text-primary-500 mt-2 mb-1">Teléfono Médico Legista</p>
-                  <a href="tel:1553762964" className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">15-5376-2964</a>
+                  <a href="tel:1553762964" className="text-sm text-primary-700 hover:text-primary-900 transition-colors duration-300">+54 (11) 5376-2964</a>
                 </div>
               </div>
               
