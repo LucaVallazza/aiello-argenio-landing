@@ -205,26 +205,26 @@ function App() {
 
         {/* Navbar - Rediseñado */}
         <nav className="fixed w-full z-50 bg-white backdrop-blur-md border-b border-primary-100/30 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 pt-2 md:px-6 md:py-3 flex justify-between items-center ">
-            <div className="flex ">
+          <div className="max-w-7xl mx-auto px-4 py-2 md:px-6 md:py-3 flex justify-between items-center ">
+            <div className="flex items-center">
               <img
                 src="/images/icon-png.png"
                 alt="Logo"
                 className="w-14 h-14 mr-3 object-contain"
                 style={{ minWidth: 32, minHeight: 32 }}
               />
-              <div className="relative flex items-center">
+              <div className="relative flex items-center h-fit">
                 {/* Icono PNG agregado */}
 
-                <div className="flex flex-col m-0 p-0">
-                  <div className="text-xl md:text-[0.9rem] lg:text-xl font-bold  text-primary-800">
+                <div className="flex flex-col">
+                  <div className="text-md md:text-[0.9rem] lg:text-xl font-bold  text-primary-800">
                     <span className="">AIELLO, ARGENIO & ASOC</span>
                   </div>
                   <span className="text-xs text-primary-600 -mt-1">
                     Abogados y médico legista
                   </span>
                 </div>
-                <div className="absolute bottom-1 md:bottom-2 lg:bottom-1  left-0 w-1/2 h-[2px] bg-gradient-to-r from-primary-400 to-transparent"></div>
+                <div className="absolute -bottom-1 md:-bottom-1 lg:-bottom-1  left-0 w-1/2 h-[2px] bg-gradient-to-r from-primary-400 to-transparent"></div>
               </div>
             </div>
 
