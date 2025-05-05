@@ -2,17 +2,14 @@
 
 @keyframes fadeIn {
     0% { opacity: 0; }
-    100% { opacity: 0.3; }
-  }
-  .animate-fadeIn {
+    100% { opacity: 1; }
+}
+.animate-fadeIn {
     animation: fadeIn 1s forwards;
-  }
-  .delay-300 {
+}
+.delay-300 {
     animation-delay: 0.3s;
-  }
-
-
-  /* Tus estilos actuales */
+}
 
 /* Definición de la fuente Timeless */
 @font-face {
@@ -26,10 +23,15 @@
 /* Si necesitas variantes en peso o estilo */
 @font-face {
   font-family: 'Timeless';
-  src: url('/Timeless-Bold.ttf') format('truetype'); /* Si existiera esta variante */
+  src: url('/Timeless-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
+}
+
+/* Aplicar la fuente a todos los elementos */
+html, body {
+  font-family: 'Timeless', serif;
 }
 
 @theme {
@@ -48,4 +50,3 @@
   /* --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
   --ease-snappy: cubic-bezier(0.2, 0, 0, 1); */
 }
-

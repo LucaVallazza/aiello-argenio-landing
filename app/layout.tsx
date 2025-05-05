@@ -13,8 +13,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Expertos en Derecho Laboral | Los mejores abogados para accidentes laborales en Buenos Aires',
-  description: 'Estudio jurídico especializado en derecho laboral con más de 20 años de experiencia. Especialistas en accidentes laborales y despidos injustificados.',
+  title: 'Expertos en Derecho Laboral y Medicina del trabajo | Los mejores abogados para accidentes laborales en Buenos Aires',
+  description: 'El mejor estudio jurídico en buenos aires especializado en derecho laboral con más de 20 años de experiencia. Especialistas en accidentes laborales y despidos injustificados.',
+  icons: [
+    { rel: 'icon', url: '/favicon.ico', sizes: 'any' },
+    { rel: 'icon', url: '/favicon.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', url: '/apple-icon.png' },
+  ]
 };
 
 export default function RootLayout({
